@@ -1,6 +1,7 @@
 import "./sign-up-form.styles.scss";
 
 import { useState } from "react";
+
 import {
   createAuthUserWithEmailAndPassword,
   createUserDocumentFromAuth,

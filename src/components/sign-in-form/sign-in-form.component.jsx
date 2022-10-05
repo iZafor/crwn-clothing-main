@@ -4,8 +4,7 @@ import { useState } from "react";
 
 import {
   signInWithGooglePopup,
-  signInAuthUserWithEmailAndPassword,
-  createUserDocumentFromAuth,
+  signInAuthUserWithEmailAndPassword
 } from "../../utils/firebase/firebase.utils";
 
 import FormInput from "../form-input/form-input.component";
@@ -32,18 +31,20 @@ const SignInForm = () => {
 
   const signInWithGoogle = async (event) => {
     event.preventDefault();
-    const { user } = await signInWithGooglePopup();
-    await createUserDocumentFromAuth(user);
+    try {
+      await signInWithGooglePopup();
+    } catch (error) {
+      alert(error.code);
+    }
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await signInAuthUserWithEmailAndPassword(
+      await signInAuthUserWithEmailAndPassword(
         email,
         password
       );
-      console.log(response);
     } catch (error) {
       switch (error.code) {
         case "auth/user-not-found":
