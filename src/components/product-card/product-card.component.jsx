@@ -1,8 +1,6 @@
 import {
   ProductCardContainer,
   Footer,
-  name,
-  price,
   Name,
   Price,
 } from "./product-card.styles";
